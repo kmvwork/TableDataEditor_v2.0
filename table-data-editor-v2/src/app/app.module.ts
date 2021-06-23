@@ -9,6 +9,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { DataEditorComponent } from './components/data-editor/data-editor.component';
 import { DataUploadingComponent } from './components/data-uploading/data-uploading.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
