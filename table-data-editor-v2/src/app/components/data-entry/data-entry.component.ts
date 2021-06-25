@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
+import {JSONValidators} from "../../core/validators/JSON.validators";
 
 @Component({
   selector: 'app-data-entry',
@@ -25,7 +26,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 
 export class DataEntryComponent implements OnInit {
   entryDataForm = this.fb.group({
-    inputField: ['', [Validators.required]]
+    inputField: ['', [Validators.required, JSONValidators]]
   })
 
   constructor(private fb: FormBuilder) {
