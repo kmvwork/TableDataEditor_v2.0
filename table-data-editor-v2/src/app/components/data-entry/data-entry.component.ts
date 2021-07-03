@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {JSONValidators} from "../../core/validators/JSON.validators";
+import {JSONTypeDataValidators} from "../../core/validators/JSONTypeData.validators";
+import {JSONSimilarValidators} from "../../core/validators/JSONSimilar.validators";
 
 @Component({
   selector: 'app-data-entry',
@@ -15,6 +17,13 @@ import {JSONValidators} from "../../core/validators/JSON.validators";
           <div class="alert alert-danger mt-2" *ngIf="inputField?.errors?.required">
             Пожалуйста, введите ваши данные.
           </div>
+          <div class="alert alert-danger mt-2" *ngIf="inputField?.errors?.JSONSimilar">
+            Значения ваших ключей в первом объекте должны повторяться в последующих. Пожалуйста, проверьте ваши
+            значения.
+          </div>
+          <div class="alert alert-danger mt-2" *ngIf="inputField?.errors?.JSONTypeData">
+            Пожалуйста, введите данные в формате строки заключенной в двойные кавычки " " .
+          </div>
         </div>
         <button class="btn btn-success btn-lg btn-block mt-4" type="submit" [disabled]="entryDataForm.invalid">
           Продолжить
@@ -24,9 +33,10 @@ import {JSONValidators} from "../../core/validators/JSON.validators";
   `
 })
 
+
 export class DataEntryComponent implements OnInit {
   entryDataForm = this.fb.group({
-    inputField: ['', [Validators.required, JSONValidators]]
+    inputField: ['', [Validators.required, JSONValidators, JSONTypeDataValidators, JSONSimilarValidators]]
   })
 
   constructor(private fb: FormBuilder) {
